@@ -1,5 +1,5 @@
 .headerImg {
-	width: 200px;
+	max-width: 200px;
 	margin-top: 20px;
 	margin-bottom: 10px;
 	margin-left: auto;
@@ -16,6 +16,17 @@
 	font-size: 20px;
 }
 
+.pageTxt {
+	font-family: "Lucida Sans Unicode", Lucida, sans-serif;
+}
+
+.socialImg {
+	display: inline;
+	margin-right: 20px;
+	margin-top: 5px;
+	max-width: 48px;
+}
+
 #nameIntro {
 	font-family: "Lucida Sans Unicode", Lucida, sans-serif;
 	font-size: 30px;
@@ -24,7 +35,14 @@
 
 #buttonSep {
 	display: inline;
-	margin-right: 15px;
+	margin-right: 17px;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	max-width: 40px;
+}
+
+blockquote {
+	border-width: 1px;
+	border-right-style: solid;
+	border-right-color: rgb(238, 238, 238);
 }
