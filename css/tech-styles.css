@@ -1,5 +1,6 @@
 .pageTxt {
-	font-family: "Lucida Sans Unicode", Lucida, sans-serif;
+	/*font-family: "Lucida Sans Unicode", Lucida, sans-serif;*/
+	font-family: "Bookman Old Style", Lucida, sans-serif;
 }
 
 .boldTxt {
@@ -8,8 +9,8 @@
 
 p, .pLi {
 	font-size: 16px;
-	font-family: "Lucida Sans Unicode", Lucida, sans-serif;
+	/*font-family: "Lucida Sans Unicode", Lucida, sans-serif;*/
+	font-family: "Bookman Old Style", Lucida, sans-serif;
 }
-
 
 
