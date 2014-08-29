@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/index-styles.css">
+		<link rel="shortcut icon" href="favicon.ico">
 	</head>
 	
 	<body>
@@ -13,8 +14,10 @@
 			<img src = "pics/site-tech-photo.jpg" class="img-responsive headerImg">
 			
 			<div class = "text-center">
-				<p id="nameIntro">Hi, I'm Shaurya!</p>
-				<h5>(pronounced: <span style="font-style:oblique">shaw-ray-ya</span>)</h5>
+				<span id="introSpan" style="display: none; opacity: 0;">
+					<p id="nameIntro">Hi, I'm Shaurya!</p>
+					<h5>(pronounced: <span style="font-style:oblique">shaw-ray-ya</span>)</h5>
+				</span>
 				<hr>
 				<div class = "row">
 					<a class="btn btn-primary headerBtn" href="tech/about.html"><span class="buttonTxt">Technical Portfolio</span></a>
@@ -41,5 +44,15 @@
 		
 		<script src = "https://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		
+		<!--some animation-->
+		<script>
+			$(document).ready(function () {
+				setTimeout (function () {
+					$('#introSpan').slideDown('slow');
+					$('#introSpan').fadeTo('slow', 1);
+				}, 500);
+			});
+		</script>
 	</body>
 </html>

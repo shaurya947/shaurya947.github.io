@@ -46,3 +46,7 @@ blockquote {
 	border-right-style: solid;
 	border-right-color: rgb(238, 238, 238);
 }
+
+.container {
+	max-width: 960px;
+}

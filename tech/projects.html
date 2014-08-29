@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="../css/tech-styles.css">
+		<link rel="shortcut icon" href="../favicon.ico">
 	</head>
 	
 	<body>
@@ -38,8 +39,7 @@
 			<p>Devised a security system using an RFID card reader, a PIR Motion Sensor, a NERF gun, an Arduino UNO, a servo, and some other components. The objective was to shoot a trespasser who attempts to walk in through the doorway either by presenting an invalid ID, or no ID at all.</p>
 			
 			<p>Here's the final test video. See project code on <a href="https://github.com/shaurya947/RFID_NERF-Project">GitHub</a>.</p>
-			<div class="text-center">
-				<iframe width="420" height="315" src="//www.youtube.com/embed/o5X8gByMsLI" frameborder="0" allowfullscreen></iframe>
+			<div class="text-center" id="RFID-NERF-video">
 			</div>
 			
 			<hr style="color: black; border-color: black; background-color: black;">
@@ -59,8 +59,7 @@
 			<p>Built a Java application to simulate the flight of a remote-controlled helicopter. Essentially, the screen is infinite and the user sees the helicopter's top view. The helicopter scopes in/out to create the effect of gaining/losing altitude.</p>
 			<p>Created efficient GUIListener classes that controlled the rotation speed of the blades relative to the altitude and thrust. Here is the final video:</p>
 			
-			<div class="text-center">
-				<iframe width="560" height="315" src="//www.youtube.com/embed/a58tmpMUq_I?list=UU42blhxcvT_6Ry0gcU8qPeg" frameborder="0" allowfullscreen></iframe>
+			<div class="text-center" id="RC-Helicopter-video">
 			</div>
 			
 			<hr style="color: black; border-color: black; background-color: black;">
@@ -75,5 +74,13 @@
 		
 		<script src = "https://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		
+		<!--script to load videos after rest of HTML-->
+		<script>
+			$(document).ready (function () {
+				$('#RFID-NERF-video').append('<iframe width="420" height="315" src="//www.youtube.com/embed/o5X8gByMsLI" frameborder="0" allowfullscreen></iframe>');
+				$('#RC-Helicopter-video').append('<iframe width="560" height="315" src="//www.youtube.com/embed/a58tmpMUq_I?list=UU42blhxcvT_6Ry0gcU8qPeg" frameborder="0" allowfullscreen></iframe>');
+			});		
+		</script>
 	</body>
 </html>

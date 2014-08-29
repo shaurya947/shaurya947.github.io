@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="../css/tech-styles.css">
+		<link rel="shortcut icon" href="../favicon.ico">
 	</head>
 	
 	<body>
@@ -37,7 +38,7 @@
 			
 			<p>
 			I was a PM (Program Manager) Intern on the .NET Ecosystem Team at Microsoft during Summer 2014. See what I was up to:
-			<div class="text-center"><iframe src="http://channel9.msdn.com/Blogs/funkyonex/Fun-with-the-Interns-Shaurya-Arora-on-Designing-NET-for-NuGet/player?h=365&w=650&format=html5" style="height:365px;width:650px; margin-top: 10px;" allowFullScreen frameBorder="0" scrolling="no"></iframe></div>
+			<div class="text-center" id="MS-Internship-video"></div>
 			</p>
 			
 			<p>I mainly worked on the following two projects:
@@ -71,5 +72,13 @@
 	
 		<script src = "https://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		
+		<!--script to load video after all HTML-->
+		<script>
+			$(document).ready (function () {
+				$('#MS-Internship-video').append('<iframe src="http://channel9.msdn.com/Blogs/funkyonex/Fun-with-the-Interns-Shaurya-Arora-on-Designing-NET-for-NuGet/player?h=365&w=650&format=html5" style="height:365px;width:650px; margin-top: 10px;" allowFullScreen frameBorder="0" scrolling="no"></iframe>');
+			});
+		
+		</script>
 	</body>
 </html>
