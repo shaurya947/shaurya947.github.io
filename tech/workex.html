@@ -10,7 +10,7 @@
 	
 	<body>
 	
-		<div class = "navbar navbar-default navbar-static-top">
+		<div class = "navbar navbar-default navbar-fixed-top">
 			<div class = "container">
 				<a href = "../index.html" class = "navbar-brand"><span class="pageTxt boldTxt">SHAURYA ARORA</span></a>
                                
@@ -49,7 +49,8 @@
 			</p>
 			
 			<!--second work experience-->
-			<hr style="color: black; border-color: black; background-color: black;">
+			<!--<hr style="color: black; border-color: black; background-color: black;">-->
+			<br>
 			
 			<h3 class="boldTxt pageTxt" style="margin-top: 0px">Math and Physics Tutor</h3>
 			<h4 class="boldTxt pageTxt">UT Dallas Math Lab, January 2013 - Present</h4>
@@ -59,7 +60,8 @@
 			<p>See more about what we do at the Math Lab <a href="http://www.utdallas.edu/studentsuccess/mathlab/">here</a>.
 		
 			<!--third work experience-->
-			<hr style="color: black; border-color: black; background-color: black;">
+			<!--<hr style="color: black; border-color: black; background-color: black;">-->
+			<br><br>
 			
 			<h3 class="boldTxt pageTxt" style="margin-top: 0px">Voluntary Web Developer</h3>
 			<h4 class="boldTxt pageTxt">CG3I Web Dev Team, UT Dallas, May 2013 - June 2013</h4>
@@ -76,9 +78,13 @@
 		<!--script to load video after all HTML-->
 		<script>
 			$(document).ready (function () {
+				$('body').css('padding-top', (parseInt($('.navbar').height()) + 15) + 'px');
 				$('#MS-Internship-video').append('<iframe src="http://channel9.msdn.com/Blogs/funkyonex/Fun-with-the-Interns-Shaurya-Arora-on-Designing-NET-for-NuGet/player?h=365&w=650&format=html5" style="height:365px;width:650px; margin-top: 10px;" allowFullScreen frameBorder="0" scrolling="no"></iframe>');
 			});
-		
+			
+			$(window).resize(function() {  
+				$('body').css('padding-top', (parseInt($('.navbar').height()) + 15) + 'px');
+			});
 		</script>
 	</body>
 </html>

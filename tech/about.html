@@ -10,7 +10,7 @@
 	
 	<body>
 	
-		<div class = "navbar navbar-default navbar-static-top">
+		<div class = "navbar navbar-default navbar-fixed-top">
 			<div class = "container">
 				<a href = "../index.html" class = "navbar-brand"><span class="pageTxt boldTxt">SHAURYA ARORA</span></a>
                                
@@ -37,15 +37,16 @@
 			
 			<p>See my <a href="workex.html">work experience</a> and <a href="projects.html">academic projects</a>.
 			To get in touch with me, <a href="contact.html">click here</a>.</p>
-			<hr>
+			<!--<hr>-->
 			
 			<h4 class="boldTxt pageTxt">Education</h4>
 			<p>B. S. in Computer Science, University of Texas at Dallas (UTD)<br>
 			GPA: <b>3.987</b>, Expected Graduation: December 2015</p>
 			
-			<p>AES Academic Distinction Scholarship recipient</p>
+			<p>AES Academic Distinction Scholarship recipient<br>
+			Golden Key International (GKI) Honor Society member</p>
 			
-			<hr>
+			<!--<hr>-->
 			
 			<h4 class="boldTxt pageTxt">Technical Skills</h4>
 			<ul>
@@ -53,7 +54,7 @@
 				<li class="pLi">Industry Tools: Atlassian JIRA, Atlassian Confluence, Git</li>
 			</ul>
 			
-			<hr>
+			<!--<hr>-->
 			
 			<h4 class="boldTxt pageTxt">Membership and Activities</h4>
 			
@@ -79,5 +80,16 @@
 		
 		<script src = "https://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		
+		<script>
+			$(document).ready(function () {
+				$('body').css('padding-top', (parseInt($('.navbar').height()) + 15) + 'px');
+			});
+			
+			$(window).resize(function() {  
+				$('body').css('padding-top', (parseInt($('.navbar').height()) + 15) + 'px');
+			});
+		</script>
+		
 	</body>
 </html>

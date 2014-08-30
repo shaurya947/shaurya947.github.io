@@ -10,7 +10,7 @@
 	
 	<body>
 	
-		<div class = "navbar navbar-default navbar-static-top">
+		<div class = "navbar navbar-default navbar-fixed-top">
 			<div class = "container">
 				<a href = "../index.html" class = "navbar-brand"><span class="pageTxt boldTxt">SHAURYA ARORA</span></a>
                                
@@ -42,7 +42,8 @@
 			<div class="text-center" id="RFID-NERF-video">
 			</div>
 			
-			<hr style="color: black; border-color: black; background-color: black;">
+			<!--<hr style="color: black; border-color: black; background-color: black;">-->
+			<br>
 			
 			<!--second project-->
 			<h3 class="boldTxt pageTxt" style="margin-top: 0px">Restaurant Simulator (C++)</h3>
@@ -50,7 +51,8 @@
 			
 			<p>Programmed a C++ application that simulated the typical activities at a restaurant: table assignment, ordering food, serving, payment etc. Extensively utilized dynamic memory concepts to ensure high memory efficiency and performance.</p>
 			
-			<hr style="color: black; border-color: black; background-color: black;">
+			<!--<hr style="color: black; border-color: black; background-color: black;">-->
+			<br>
 			
 			<!--third project-->
 			<h3 class="boldTxt pageTxt" style="margin-top: 0px">RC Helicopter Flight Simulator (Java)</h3>
@@ -62,7 +64,8 @@
 			<div class="text-center" id="RC-Helicopter-video">
 			</div>
 			
-			<hr style="color: black; border-color: black; background-color: black;">
+			<!--<hr style="color: black; border-color: black; background-color: black;">-->
+			<br>
 			
 			<!--fourth project-->
 			<h3 class="boldTxt pageTxt" style="margin-top: 0px">2-3 Tree Data Structure (Java)</h3>
@@ -78,9 +81,14 @@
 		<!--script to load videos after rest of HTML-->
 		<script>
 			$(document).ready (function () {
+				$('body').css('padding-top', (parseInt($('.navbar').height()) + 15) + 'px');
 				$('#RFID-NERF-video').append('<iframe width="420" height="315" src="//www.youtube.com/embed/o5X8gByMsLI" frameborder="0" allowfullscreen></iframe>');
 				$('#RC-Helicopter-video').append('<iframe width="560" height="315" src="//www.youtube.com/embed/a58tmpMUq_I?list=UU42blhxcvT_6Ry0gcU8qPeg" frameborder="0" allowfullscreen></iframe>');
 			});		
+			
+			$(window).resize(function() {  
+				$('body').css('padding-top', (parseInt($('.navbar').height()) + 15) + 'px');
+			});
 		</script>
 	</body>
 </html>

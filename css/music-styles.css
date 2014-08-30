@@ -1,0 +1,25 @@
+.navbar {
+	margin-bottom: 0px;
+}
+
+.container {
+	max-width: 960px;
+}
+
+.pageTxt {
+	font-family: Georgia, serif;
+	font-size: 16px;
+}
+
+.pageFont {
+	font-family: Georgia, serif;
+}
+
+.boldTxt {
+	font-weight: bold;
+}
+
+.emailFont {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 18px;
+}

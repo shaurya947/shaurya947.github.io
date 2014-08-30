@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Music | Shaurya Arora</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/music-styles.css">
+		<link rel="shortcut icon" href="../favicon.ico">
+	</head>
+	
+	<body>
+		<div class = "navbar navbar-inverse navbar-fixed-top">
+			<div class = "container">
+				<a href = "../index.html" class = "navbar-brand"><span style = "font-weight: bold; font-family: Georgia, serif;">SHAURYA ARORA</span></a>
+				
+				<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+						<span class = "icon-bar"></span>
+						<span class = "icon-bar"></span>
+						<span class = "icon-bar"></span>
+				</button>
+				
+				<div class = "collapse navbar-collapse navHeaderCollapse">           
+					<ul class = "nav navbar-nav navbar-right">
+						<li class="pageTxt active"><a>Drums</a></li>
+						<li class="pageTxt"><a href="contact.html">Contact</a></li>
+					 </ul>         
+				</div>
+			</div>
+		</div>
+		
+		<!--main picture, lazy load this and some animation-->
+		<div class = "row" style="background-color: black; display:none;" id="pictureRow">
+			<div class = "container" id="pictureContainer">
+			</div>
+		</div>
+		
+		<br>
+		
+		<div class = "container">
+			<p class = "pageTxt">Words cannot describe my love for music (although I could talk about it all day).
+			I've been playing drums since 2007, and over all these years, I've had many different influences.
+			Lately, I've been a huge <a href="http://en.wikipedia.org/wiki/Djent"><span class="boldTxt">djent</span></a> fan,
+			with particular favorites such as <a href="http://tesseractband.co.uk/"><span class="boldTxt">TesseracT</span></a>, 
+			<a href="http://sumerianrecords.com/artist/details/id:14/"><span class="boldTxt">Periphery</span></a>, 
+			<a href="http://prostheticrecords.com/?p=499"><span class="boldTxt">Animals as Leaders</span></a>,
+			<a href="http://www.basickrecords.com/bands/skyharbor"><span class="boldTxt">Skyharbor</span></a> etc.
+			Some other bands that have heavily influenced me over the course of my life include 
+			<a href="http://www.porcupinetree.com/"><span class="boldTxt">Porcupine Tree</span></a>,
+			<a href="http://www.toolband.com/"><span class="boldTxt">Tool</span></a> and
+			<a href="http://www.lamb-of-god.com/"><span class="boldTxt">Lamb Of God</span></a> (\m/ LOG is probably the reason I started playing drums).</p>
+		
+			<!--<hr>-->
+			
+			<!--do lazy loading of video links-->
+			<h3 class="pageFont boldTxt">Drum covers</h3>
+			<p class = "pageTxt">Please comment/rate/subscribe!</p>
+			<span id = "drum-covers-span"></span>
+			<p class = "pageTxt">You can find more videos at my <a href="https://www.youtube.com/user/shaurya947/videos">old YouTube Channel</a>
+		</div>
+		
+		<div class="footer navbar-default navbar-static-bottom">
+			<div class = "container">
+				<p style="text-align: right; margin-top: 10px;">Image by <a href="https://www.facebook.com/Messedupmindsak">Messedupminds</a></p>
+			</div>
+		</div>
+	
+		<script src = "https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		
+		<script>
+			$(document).ready (function () {
+				$('body').css('padding-top', $('.navbar').height());
+				$('#pictureContainer').append('<img src = "../pics/site-music-photo.jpg" class = "img-responsive" id = "musicPic">');
+				$('#drum-covers-span').append('<iframe width="560" height="315" src="//www.youtube.com/embed/KdJY1w-JU74" frameborder="0" allowfullscreen></iframe><br><br>');
+				$('#drum-covers-span').append('<iframe width="560" height="315" src="//www.youtube.com/embed/T8vpWG1zgZY" frameborder="0" allowfullscreen></iframe><br><br>');
+				$('#drum-covers-span').append('<iframe width="420" height="315" src="//www.youtube.com/embed/O0zerMOwYTA" frameborder="0" allowfullscreen></iframe><br><br>');
+				
+				setTimeout (function () {
+					$('#pictureRow').slideDown('slow');
+				}, 1000);
+			});
+			
+			$(window).resize(function() {  
+				$('body').css('padding-top', $('.navbar').height());
+			});
+		</script>
+	</body>
+</html>

@@ -9,7 +9,7 @@
 	</head>
 	
 	<body>
-		<div class = "navbar navbar-default navbar-static-top">
+		<div class = "navbar navbar-default navbar-fixed-top">
 			<div class = "container">
 				<a href = "../index.html" class = "navbar-brand"><span class="pageTxt boldTxt">SHAURYA ARORA</span></a>
                                
@@ -38,7 +38,7 @@
 					<span class="boldTxt">Email</span>: shaurya.arora1@gmail.com<br>
 					<span class="boldTxt">Phone</span>: 214-202-2404</p>
 					
-					<p>View LinkedIn Profile <a href="http://www.linkedin.com/pub/shaurya-arora/68/17/619">here</a>.</p>
+					<p>View <a href="http://www.linkedin.com/pub/shaurya-arora/68/17/619">LinkedIn Profile</a></p>
 				</div>
 				
 				<div class = "col-md-4" id="contact-photo">
@@ -52,7 +52,12 @@
 		<!--script to load picture after rest of body-->
 		<script>
 			$(document).ready(function () {
+				$('body').css('padding-top', (parseInt($('.navbar').height()) + 15) + 'px');
 				$('#contact-photo').append('<img src="../pics/tech-contact-photo.jpg" class = "img-responsive" style="max-width: 250px;">');
+			});
+			
+			$(window).resize(function() {  
+				$('body').css('padding-top', (parseInt($('.navbar').height()) + 15) + 'px');
 			});
 		</script>
 	</body>
