@@ -1,4 +1,4 @@
-source: /blog
+source: C:\Users\shaurya\Documents\Repositories\shaurya947.github.io\blog
 
 #
 # This file contains configuration flags to customize your site
@@ -52,6 +52,7 @@ google_analytics:
 # !! You don't need to change any of the configuration flags below !!
 #
 
+markdown: kramdown
 permalink: /:title/
 
 # The release of Jekyll Now that you're using
