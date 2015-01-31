@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    <title>Prime Factors problem using Ruby and C# – Shaurya Arora – Programmer | Drummer</title>
+
+    <meta name="author" content="Shaurya Arora" />
+    <meta name="description" content="Programmer | Drummer">
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="Shaurya Arora - Programmer | Drummer" href="/feed.xml" />
+
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/" class="site-avatar"><img src="http://shaurya.me/pics/site-tech-photo.jpg" /></a>
+          
+          <div class="site-info">
+            <h1 class="site-name"><a href="http://shaurya.me">Shaurya Arora</a></h1>
+            <p class="site-description">Programmer | Drummer</p>
+          </div>
+          
+          <nav>
+            <a href="/">Blog Home</a>
+            <!--<a href="/about">About</a>-->
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h1>Prime Factors problem using Ruby and C#</h1>
+
+  <div class="entry">
+    <p>This is my first time using Ruby and I must say that I am fascinated. The problem, also 
+known as <strong>Prime Factors Kata</strong>, was to write a program that would return the prime 
+factors of a number in an array. I started out with a program in C# (my <em>old</em> language), 
+and then converted that to a Ruby program. In doing so, I tried to take advantage of as many <em>niceties</em> of Ruby as I could. See full source <a href="https://github.com/shaurya947/PrimeFactorsKata">here</a>. First, here is a snippet from the C# program:</p>
+
+<pre><code>//method that takes in an integer and returns its prime factors as a linkedlist of integers
+static int[] generate(int number)
+{
+    //if number is less than 2, return empty array
+    if (number &lt; 2)
+        return new int[0];
+
+    //list to store factors along the way
+    LinkedList&lt;int&gt; pFactors = new LinkedList&lt;int&gt;();
+
+    //local variables for loop
+    int factor = 0;
+    bool found = false;
+
+    while(!isPrime(number))
+    {
+        //find smallest prime number that divides temp
+        factor = 2;
+        found = false;
+		
+        while(factor &lt;= number &amp;&amp; !found)
+        {
+            if (isPrime(factor) &amp;&amp; number % factor == 0)
+                found = true;
+			
+            else
+                factor++;
+        }
+		
+
+        //add factor to list
+        pFactors.AddLast(factor);
+        number = number / factor;
+    }
+
+    //finally, add temp's data to factors list
+    pFactors.AddLast(number);
+
+    return pFactors.ToArray();
+	
+}
+</code></pre>
+
+<p>This code follows the <strong>tree</strong> approach of prime factorizing a number, wherein the given number is the root of the tree, and leaves are broken down into prime factors until all leaves contain prime numbers. Now, here is the same program in Ruby:</p>
+
+<pre><code class="language-ruby">class PrimeFactors
+    def self.generate(number) #static method to generate prime factors
+        if number &lt; 2
+            return Array.new
+        end
+			
+        pFactors = Array.new
+		
+        while !Prime.prime?(number) do
+            #find smallest prime number that divides temp
+            factor = (2..number).each do |n|
+                break n if Prime.prime?(n) &amp;&amp; number % n ==0
+            end
+			
+            #add factor to list and reassign variables
+            pFactors &lt;&lt; factor
+            number = number / factor
+        end
+		
+        pFactors &lt;&lt; number
+    end
+end
+</code></pre>
+
+<p>Please excuse my bias as I just started with Ruby and am quite liking it. It is probably just a phase. Ruby code feels easier to read. I did not have to create a LinkedList (like I had to in C#) to dynamically append elements to a collection. In Ruby, I could just push numbers to the end of pFactors array. Moreover, Ruby has a built in Prime class that facilitated checking whether or not a number is prime. In C#, I had to write the isPrime method myself.</p>
+
+  </div>
+
+  <div class="date">
+    Written on January 30, 2015
+  </div>
+
+  
+</article>
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+<a href="mailto:shaurya.arora1@gmail.com"><i class="svg-icon email"></i></a>
+<a href="http://facebook.com/shaurya.arora"><i class="svg-icon facebook"></i></a>
+
+<a href="http://github.com/shaurya947"><i class="svg-icon github"></i></a>
+
+<a href="http://linkedin.com/in/arorashaurya"><i class="svg-icon linkedin"></i></a>
+
+
+<a href="http://twitter.com/shaun_arora"><i class="svg-icon twitter"></i></a>
+<a href="http://stackoverflow.com//users/2278826/sarora"><i class="svg-icon stackoverflow"></i></a>
+
+        </footer>
+      </div>
+    </div>
+
+    
+
+  </body>
+</html>

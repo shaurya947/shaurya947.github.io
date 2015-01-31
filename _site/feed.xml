@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shaurya Arora</title>
+    <description>Programmer | Drummer</description>
+    <link></link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Mars Rover problem using Ruby and C#</title>
+        <description>&lt;p&gt;Yet another Ruby and C# adventure. This time it’s the &lt;strong&gt;Mars Rover Problem&lt;/strong&gt; (see description &lt;a href=&quot;http://dallashackclub.com/rover&quot;&gt;here&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Essentially, the problem is simulate an object (rover) moving on a grid (Mars). Some points on the grid have obstacles. The user can enter runtime commands to move the rover forward (f), backward (b), turn left (l) or turn right (r). Obstacles along the path are reported.&lt;/p&gt;
+
+&lt;p&gt;(See full source codes &lt;a href=&quot;https://github.com/shaurya947/MarsRoverKata&quot;&gt;here&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;This time, Ruby code first:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;#Model point as a struct
+Point = Struct.new :x, :y
+
+#Grid class's initialize method, places obstacles randomly in 1/10th of the map
+def initialize (maxX = 10, minX = -10, maxY = 10, minY = -10)
+    @maxX, @minX, @maxY, @minY = maxX, minX, maxY, minY
+
+    @obstacles = Set.new
+    numObstacles = ((maxX - minX) * (maxY - minY)) / 10
+
+    (1..numObstacles).each do |n|
+        p = Point.new(rand(minX..maxX), rand(minY..maxY))
+        if !@obstacles.include?(p)
+            @obstacles.add(p)
+        end
+    end
+end
+
+#The Rover class has methods for the movements
+class Rover
+  def initialize (startingX = 0, startingY = 0, startingDir = :north)
+    @currentPos = Point.new(startingX, startingY)
+    @currentDir = startingDir
+  end
+
+  attr_reader :currentPos, :currentDir
+
+  #method to assign grid to rover
+  def assignGrid grid
+    @grid = grid
+
+    #if starting point of rover is at an obstacle, move rover over till hit free spot
+    if @grid.obstacles.include?(@currentPos)
+      print &quot;Grid has obstacle at rover starting position. Landed rover at (&quot;
+
+      loop do
+        moveForward
+        break if !@grid.obstacles.include?(@currentPos)
+      end
+
+      print &quot;#{@currentPos.x}, #{@currentPos.y}) instead\n&quot;
+    end
+  end
+
+  #method to move rover one step forward
+  #display error and return false if obstacle lies ahead
+  def moveForward
+    case @currentDir
+      when :north
+        incrementY
+      when :south
+        decrementY
+      when :east
+        incrementX
+      when :west
+        decrementX
+    end
+
+    #if new current position has obstacle, move back and report it
+    if @grid.obstacles.include?(@currentPos)
+      puts &quot;Cannot move forward. Obstacle present ahead at (#{@currentPos.x}, #{@currentPos.y})&quot;
+      moveBackward
+      return false
+    end
+
+    true
+  end
+
+  #method to move rover one step backward
+  ...
+
+  #method to turn rover to the left
+  def turnLeft
+    case @currentDir
+      when :north
+        @currentDir = :west
+      when :south
+        @currentDir = :east
+      when :east
+        @currentDir = :north
+      when :west
+        @currentDir = :south
+    end
+  end
+
+  #method to turn rover to the right
+  ...
+
+  #method to increment rover's x position (with wrap around)
+  def incrementX
+    @currentPos.x += 1
+    if @currentPos.x &amp;gt; @grid.maxX
+      @currentPos.x = @grid.minX
+    end
+  end
+
+  #method to decrement rover's x position (with wrap around)
+  ...
+  
+  #method to display new position
+  def displayPosition
+    print &quot;New rover position is (#{@currentPos.x}, #{@currentPos.y}) facing &quot;
+
+    case @currentDir
+      when :north
+        print &quot;North\n&quot;
+      when :south
+        print &quot;South\n&quot;
+      when :east
+        print &quot;East\n&quot;
+      when :west
+        print &quot;West\n&quot;
+    end
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now the C# code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//Rover class
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MarsRoverKata
+{
+    //enumerable type to specify direction
+    enum Direction { N, S, E, W};
+
+    class Rover
+    {
+        //properties of Rover
+        public Point currentPos { get; private set; }
+        public Direction currentDir { get; private set; }
+
+        private Grid grid;     //current grid rover is in
+
+        //constructor that takes initial position and direction
+        public Rover(int startingX = 0, int startingY = 0, Direction startingDir = Direction.N)
+        {
+            currentPos = new Point(startingX, startingY);
+            currentDir = startingDir;
+        }
+
+        //method to assign grid to rover
+        public void assignGrid(Grid grid)
+        {
+            this.grid = grid;
+
+            if (grid.obstacles.Contains(currentPos))
+            {
+                Console.Write(&quot;Grid has obstacle at rover starting position. Landed rover at &quot;);
+                //verify that current position of rover is not an obstacle
+                while (grid.obstacles.Contains(currentPos))
+                    moveForward();
+
+                Console.Write(&quot;(&quot; + currentPos.X + &quot;, &quot; + currentPos.Y + &quot;) instead\n&quot;);
+            }
+        }
+
+        //method to move rover one step forward
+        //displays error (and return false) if obstalce lies ahead
+        public bool moveForward()
+        {
+            switch(currentDir)
+            {
+                case Direction.N: incrementY();
+                    break;
+
+                case Direction.S: decrementY();
+                    break;
+
+                case Direction.E: incrementX();
+                    break;
+
+                case Direction.W: decrementX();
+                    break;
+            }
+
+            //if new current position has obstacle, move back and report it
+            if(grid.obstacles.Contains(currentPos))
+            {
+                Console.WriteLine(&quot;Cannot move forward. Obstacle present ahead at (&quot; + currentPos.X + &quot;, &quot; + currentPos.Y + &quot;)&quot;);
+                moveBackward();
+                return false;
+            }
+
+            return true;
+        }
+
+        //method to move rover one step backward
+        //displays error (and return false) if obstalce lies behind
+        ...
+
+        //method to turn rover to the left
+        public void turnLeft()
+        {
+            switch (currentDir)
+            {
+                case Direction.N: currentDir = Direction.W;
+                    break;
+
+                case Direction.S: currentDir = Direction.E;
+                    break;
+
+                case Direction.E: currentDir = Direction.N;
+                    break;
+
+                case Direction.W: currentDir = Direction.S;
+                    break;
+            }
+        }
+
+        //method to turn rover to the right
+        ...
+
+        //method to increment rover's x position (with wrap around)
+        private void incrementX()
+        {
+            int newX = currentPos.X + 1;
+
+            if (newX &amp;gt; grid.maxX)
+                newX = grid.minX;
+
+            currentPos = new Point(newX, currentPos.Y);
+        }
+
+        //method to decrement rover's x position (with wrap around)
+        ...
+		
+        //method to display new rover position and direction
+        public void displayNewPosition()
+        {
+            Console.Write(&quot;New rover position is (&quot; + currentPos.X + &quot;, &quot; + currentPos.Y + &quot;) facing &quot;);
+
+            switch(currentDir)
+            {
+                case Direction.N: Console.Write(&quot;North.\n&quot;);
+                    break;
+
+                case Direction.S: Console.Write(&quot;South.\n&quot;);
+                    break;
+
+                case Direction.E: Console.Write(&quot;East.\n&quot;);
+                    break;
+
+                case Direction.W: Console.Write(&quot;West.\n&quot;);
+                    break;
+            }
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To compare the two code segments, I like how I could just use symbols in Ruby and not have to deal with enums (like I had to in C#). It gets a little annoying to prefix the enum type (Direction.) every time. On the other hand, I like the C# sharp model of treating currentPos and currentDir as properties of an object, and &lt;em&gt;not just&lt;/em&gt; instance variables.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 30 Jan 2015 12:40:45 -0600</pubDate>
+        <link>/Mars-Rover-Ruby-C-Sharp/</link>
+        <guid isPermaLink="true">/Mars-Rover-Ruby-C-Sharp/</guid>
+      </item>
+    
+      <item>
+        <title>Prime Factors problem using Ruby and C#</title>
+        <description>&lt;p&gt;This is my first time using Ruby and I must say that I am fascinated. The problem, also 
+known as &lt;strong&gt;Prime Factors Kata&lt;/strong&gt;, was to write a program that would return the prime 
+factors of a number in an array. I started out with a program in C# (my &lt;em&gt;old&lt;/em&gt; language), 
+and then converted that to a Ruby program. In doing so, I tried to take advantage of as many &lt;em&gt;niceties&lt;/em&gt; of Ruby as I could. See full source &lt;a href=&quot;https://github.com/shaurya947/PrimeFactorsKata&quot;&gt;here&lt;/a&gt;. First, here is a snippet from the C# program:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//method that takes in an integer and returns its prime factors as a linkedlist of integers
+static int[] generate(int number)
+{
+    //if number is less than 2, return empty array
+    if (number &amp;lt; 2)
+        return new int[0];
+
+    //list to store factors along the way
+    LinkedList&amp;lt;int&amp;gt; pFactors = new LinkedList&amp;lt;int&amp;gt;();
+
+    //local variables for loop
+    int factor = 0;
+    bool found = false;
+
+    while(!isPrime(number))
+    {
+        //find smallest prime number that divides temp
+        factor = 2;
+        found = false;
+		
+        while(factor &amp;lt;= number &amp;amp;&amp;amp; !found)
+        {
+            if (isPrime(factor) &amp;amp;&amp;amp; number % factor == 0)
+                found = true;
+			
+            else
+                factor++;
+        }
+		
+
+        //add factor to list
+        pFactors.AddLast(factor);
+        number = number / factor;
+    }
+
+    //finally, add temp's data to factors list
+    pFactors.AddLast(number);
+
+    return pFactors.ToArray();
+	
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This code follows the &lt;strong&gt;tree&lt;/strong&gt; approach of prime factorizing a number, wherein the given number is the root of the tree, and leaves are broken down into prime factors until all leaves contain prime numbers. Now, here is the same program in Ruby:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;class PrimeFactors
+    def self.generate(number) #static method to generate prime factors
+        if number &amp;lt; 2
+            return Array.new
+        end
+			
+        pFactors = Array.new
+		
+        while !Prime.prime?(number) do
+            #find smallest prime number that divides temp
+            factor = (2..number).each do |n|
+                break n if Prime.prime?(n) &amp;amp;&amp;amp; number % n ==0
+            end
+			
+            #add factor to list and reassign variables
+            pFactors &amp;lt;&amp;lt; factor
+            number = number / factor
+        end
+		
+        pFactors &amp;lt;&amp;lt; number
+    end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Please excuse my bias as I just started with Ruby and am quite liking it. It is probably just a phase. Ruby code feels easier to read. I did not have to create a LinkedList (like I had to in C#) to dynamically append elements to a collection. In Ruby, I could just push numbers to the end of pFactors array. Moreover, Ruby has a built in Prime class that facilitated checking whether or not a number is prime. In C#, I had to write the isPrime method myself.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 30 Jan 2015 12:00:00 -0600</pubDate>
+        <link>/Prime-Factors-Ruby-C-Sharp/</link>
+        <guid isPermaLink="true">/Prime-Factors-Ruby-C-Sharp/</guid>
+      </item>
+    
+  </channel>
+</rss>
