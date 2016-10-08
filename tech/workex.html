@@ -84,8 +84,9 @@
 			
 			<p>
 			I was a PM (Program Manager) Intern on the .NET Ecosystem Team at Microsoft during Summer 2014. See what I was up to:
-			<div class="text-center" id="MS-Internship-video"></div>
 			</p>
+			<div class="text-center embed-responsive embed-responsive-16by9" id="MS-Internship-video"></div>
+			<br>
 			
 			<p>I mainly worked on the following two projects:
 			<ol>
@@ -126,7 +127,7 @@
 		<script>
 			$(document).ready (function () {
 				$('body').css('padding-top', (parseInt($('.navbar').height()) + 15) + 'px');
-				$('#MS-Internship-video').append('<iframe src="http://channel9.msdn.com/Blogs/funkyonex/Fun-with-the-Interns-Shaurya-Arora-on-Designing-NET-for-NuGet/player?h=365&w=650&format=html5" style="height:365px;width:650px; margin-top: 10px;" allowFullScreen frameBorder="0" scrolling="no"></iframe>');
+				$('#MS-Internship-video').append('<iframe class="embed-responsive-item" src="https://channel9.msdn.com/Blogs/funkyonex/Fun-with-the-Interns-Shaurya-Arora-on-Designing-NET-for-NuGet/player" width="1280" height="720" allowFullScreen frameBorder="0"></iframe>');
 			});
 			
 			$(window).resize(function() {  
