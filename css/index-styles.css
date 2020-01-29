@@ -27,6 +27,12 @@
 	max-width: 48px;
 }
 
+.socialImgLast {
+	display: inline;
+	margin-top: 5px;
+	max-width: 48px;
+}
+
 #nameIntro {
 	font-family: "Lucida Sans Unicode", Lucida, sans-serif;
 	font-size: 30px;
